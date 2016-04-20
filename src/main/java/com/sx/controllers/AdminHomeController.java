@@ -83,7 +83,7 @@ public class AdminHomeController {
     //this form sends user input (chosen Admin_Task) to this adress that can be read with method=RM.GET
     @RequestMapping(value="adminopts", method= RequestMethod.GET)
     //user input is identified in thymeleaf with name="optionsListId" and is bound to chosen-parameter
-    //because the Admin_Options has a html target String, the chosen parameter ensures redirection to the right view
+    //because the Admin_Options has a html target String, the chosen parameter takes care of redirecting to the right view
     public String choseAdminAction(@ModelAttribute("optionsListId") Admin_Options chosen) {
         System.out.println(chosen);
         return chosen.getHtmltarget();
