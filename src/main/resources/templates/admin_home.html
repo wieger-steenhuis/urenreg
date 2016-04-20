@@ -14,23 +14,13 @@
     </div>
 </header>
 <p class="textcenter">Welkom<!--<span th:text="${pers.name}">NAAM</span>-->, kies hieronder een actie en druk op "Verder":</p>
-
-<!--/*@thymesVar id="admin_opts" type="Admin_Options"*/-->
+<!--/*@thymesVar id="admin_opts" type="List<Admin_Options>"*/-->
 <form th:action="@{/adminopts}" method="get" class="formlayout">
-    <select class="kader_layout" id="optionsList" name="optionsListId">
+    <select title="select" class="kader_layout" id="optionsList" name="optionsListId">
+        <!--/*@thymesVar id="option" type="Admin_Options"*/-->
         <option th:each="item : ${admin_opts}" th:value="${item}" th:text="${item.option}"/>
     </select>
-    <button class="buttonlayout" type="submit"><b>Verder</b></button>
+    <button class="buttonlayout" type="submit">Verder</button>
 </form>
-
-
-<!--
-<form id="admin_opts-form" role="form" th:action="@{/adminopts}" method="post" th:object="${admin_opts}" class="formlayout">
-        <select title="Enter data..." th:each="item, stat : *{options}">
-                <option name="options" th:text="*{options[__${stat.index}__]}" th:value="*{options[__${stat.index}__]}" th:field="*{options[__${stat.index}__]}" th:id="${'options-'+stat.index}"/>
-        </select>
-
-</form>
--->
 </body>
 </html>
