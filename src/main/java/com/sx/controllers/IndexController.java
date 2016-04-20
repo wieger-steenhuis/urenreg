@@ -3,7 +3,7 @@
 * Spring Controller maps URLs with RequestMapping annotations
 * html target is returned as a String
 * this controller simply redirects from root "/" (localhost:8080) to view index.html
-* TODO add admin account verification through user name and password
+* TODO add admin (and trainer) account verification through user name and password
 * TODO set up encryption for user name and password fields
 * */
 
