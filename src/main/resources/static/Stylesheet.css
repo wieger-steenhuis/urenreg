@@ -1,6 +1,8 @@
 .textcenter{
-    alignment: center;
     text-align: center;
+}
+ul.textcenter{
+    padding: 0;
 }
 button.buttonlayout{
     padding: 0 5px 0 5px;
