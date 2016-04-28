@@ -9,6 +9,7 @@ public class FakeCustomerDatabase {
 
     //Some fake Customer Data:
     private static List<Customer> customerDatabase;
+    private static int initId;
 
 
     public FakeCustomerDatabase() {
@@ -33,13 +34,17 @@ public class FakeCustomerDatabase {
             customerDatabase.add(c5);
             customerDatabase.add(c6);
 
-            int initId = 200000;
+            initId = 200000;
             for (Customer c : customerDatabase) {
                 c.setFirstName("Customer");
                 c.setId(++initId);
                 c.seteMail(c.getFirstName() + c.getLastName() + "@gmail.com");
             }
         }
+    }
+
+    public void setInitId(Customer c){
+        c.setId(++initId);
     }
 
     public List<Customer> findByName(String search) {
@@ -61,11 +66,14 @@ public class FakeCustomerDatabase {
     public Customer save(Customer customer){
         for (int i = 0; i<customerDatabase.size();i++){
             if (customerDatabase.get(i).getId() == customer.getId()) {
-                customerDatabase.set(1, customer);
+                customerDatabase.set(i, customer);
                 System.out.println("saved: "+customer);
                 return customer;
             }
         }
-        return null;
+        setInitId(customer);
+        customerDatabase.add(customer);
+        System.out.println(customer.getId());
+        return customer;
     }
 }

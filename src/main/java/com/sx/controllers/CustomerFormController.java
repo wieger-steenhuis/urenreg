@@ -27,6 +27,13 @@ public class CustomerFormController {
         return "/customer_form";
     }
 
+    @RequestMapping("/newcustomer")
+    public String newCustomer(Model model){
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "/customer_form";
+    }
+
 
 
             /*(@ModelAttribute("cid") Customer customer, Model model) {

@@ -15,7 +15,7 @@
 </header>
 <p class="textcenter">Kies 'Nieuwe klant' of zoek naar bestaande klanten</p>
 <form class="formlayout" th:action="@{/result}" method="get">
-    <button class="buttonlayout" type="submit" th:href="@{/newcustomer}">Nieuwe Klant</button><br/><br/>
+    <button class="buttonlayout" type="button" onclick="location.href='/newcustomer'">Nieuwe Klant</button><br/><br/>
     <input type="search" name="customerSearch" id="customerSearchId"/>
     <button class="buttonlayout" type="submit">Zoek</button>
 </form>
