@@ -20,13 +20,6 @@ public class CustomerFormController {
         return "/customer_form";
     }
 
-
-    @RequestMapping("/save")
-    public String save(Customer customer){
-        customerService.save(customer);
-        return "/customer_form";
-    }
-
     @RequestMapping("/newcustomer")
     public String newCustomer(Model model){
         Customer customer = new Customer();
@@ -34,11 +27,9 @@ public class CustomerFormController {
         return "/customer_form";
     }
 
-
-
-            /*(@ModelAttribute("cid") Customer customer, Model model) {
-        System.out.println(customer);
-        model.addAttribute("customer", customer);
-        return "/customer_form";
-    }*/
+    @RequestMapping("/save")
+    public String save(Customer customer){
+        customerService.save(customer);
+        return "redirect:/adminhome";//without redirect: admin_honme will be loaded without the model variables...
+    }
 }

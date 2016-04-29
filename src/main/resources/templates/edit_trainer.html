@@ -10,9 +10,17 @@
     <div>
         <h1 title="SX urenregistratie">
             <img src="../static/logoSX.png" title="SX Sports" alt="" width="500" th:src="@{logoSX.png}" />
-            </h1>
+        </h1>
     </div>
 </header>
-<p>TRAINER</p>
+<p class="textcenter">Kies 'Nieuwe trainer' of zoek naar bestaande trainers</p>
+<form class="formlayout" th:action="@{/results}" method="get">
+    <button class="buttonlayout" type="button" onclick="location.href='/newtrainer'">Nieuwe Trainer</button><br/><br/>
+    <input type="search" name="trainerSearch" id="trainerSearchId"/>
+    <button class="buttonlayout" type="submit">Zoek</button>
+</form>
+<ul class="textcenter">
+    <li th:each="item : ${searchresults}"><a th:href="@{/trainer(id=${item.id})}" th:text="${item}">Item</a></li>
+</ul>
 </body>
 </html>

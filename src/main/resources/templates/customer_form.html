@@ -15,10 +15,19 @@
 </header>
 <form action="#" th:action="@{/save}" th:object="${customer}" method="post" class="formlayout">
     <input type="hidden" id="id" name="id"  th:field="${customer.id}"/>
+    <label>voornaam: </label>
     <input type="text" placeholder="voornaam" id="firstName" name="firstName" th:field="${customer.firstName}"/>
+    <br/>
+    <label>achternaam: </label>
     <input type="text" placeholder="achternaam" id="lastName" name="lastName" th:field="${customer.lastName}"/>
+    <br/>
+    <label>telefoonnummer: </label>
     <input type="text" placeholder="telefoonnummer" id="phoneNr" name="phoneNr" th:field="${customer.phoneNr}"/>
+    <br/>
+    <label>e-mail: </label>
     <input type="text" placeholder="e-mailadres" id="eMail" name="eMail" th:field="${customer.eMail}"/>
+    <br/>
+    <label>pin: </label>
     <input type="text" placeholder="pincode" id="pin" name="pin" th:field="${customer.pin}"/>
     <br/><br/>
     <button class="buttonlayout" type="submit"><b>Opslaan</b></button>

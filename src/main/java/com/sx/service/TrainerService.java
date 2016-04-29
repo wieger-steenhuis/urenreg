@@ -11,4 +11,13 @@ public class TrainerService {
     public List<Trainer> findByName(String search){
         return trainerRepository.findByName(search);
     }
+
+    public Trainer findById(int id) {
+        return trainerRepository.findById(id);
+    }
+    public Trainer save(Trainer trainer) {
+        return trainerRepository.save(trainer);
+    }
 }
+
+

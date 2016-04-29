@@ -19,7 +19,7 @@ button.buttonlayout{
     font-family: Calibri,serif;
     border-style: solid;
     border-color: #ff0066;
-    border-width: 5px;
+    border-width: 4px;
     border-radius: 10px;
     width: 400px;
 }
@@ -52,7 +52,7 @@ input{
     font-family: Calibri,serif;
     border-style: solid;
     border-color: #ff0066;
-    border-width: 5px;
+    border-width: 4px;
     border-radius: 10px;
     display: inline-block;
     alignment: center;
