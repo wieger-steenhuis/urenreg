@@ -1,7 +1,9 @@
 package com.sx.controllers;
 
 import com.sx.models.Trainer;
+import com.sx.service.TrainerRepository;
 import com.sx.service.TrainerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TrainerFormController {
 
 
-    //instance of CustomerService to access utility methods (database access)
-    private TrainerService trainerService = new TrainerService();
+    //instance of TrainerRepository to access utility methods (database access)
+    @Autowired
+    private TrainerRepository trainerService;
 
     @RequestMapping(value="trainer", method= RequestMethod.GET)
     public String trainerSearch(@RequestParam(value = "id") int id, Model model) {
-        model.addAttribute("trainer", trainerService.findById(id));
+        model.addAttribute("trainer", trainerService.findOne(id));
         return "/trainer_form";
     }
 

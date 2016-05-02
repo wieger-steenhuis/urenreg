@@ -1,16 +1,35 @@
 package com.sx.models;
 
-/**
- * Created by ProgramIT on 26-4-2016.
- */
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+//@Table(name="customer") //don't need this, table name is equal to entity class...
 public class Customer {
 
+    @Id
+    //@Column(name="id") //don't need this, table name is equal to entity class...
+    @GeneratedValue(strategy= GenerationType.AUTO) // Auto generate ID's (auto increment in MySQL)
     private int id;
     private String firstName;
     private String lastName;
     private String phoneNr;
     private String eMail;
     private String pin;
+    /*@OneToMany
+    private List<Subscription> subscriptions;
+
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
+*/
 
     public int getId() {
         return id;
@@ -62,6 +81,6 @@ public class Customer {
 
     @Override
     public String toString() {
-            return this.firstName+" "+this.lastName+" - "+this.eMail;
+            return this.firstName+" "+this.lastName;
         }
 }

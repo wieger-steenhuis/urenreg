@@ -1,7 +1,17 @@
 package com.sx.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+//@Table(name="trainer") //don't need this, table name is equal to entity class...
 public class Trainer {
 
+    @Id
+    //@Column(name="id") //don't need this, table name is equal to entity class...
+    @GeneratedValue(strategy= GenerationType.AUTO) // Auto generate ID's (auto increment in MySQL)
     private int id;
     private String firstName;
     private String lastName;

@@ -1,20 +1,21 @@
 package com.sx.service;
 
-import com.sx.models.Customer;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class CustomerService {
-    private FakeCustomerDatabase customerRepository = new FakeCustomerDatabase();
 
-    public List<Customer> findByName(String search) {
-        return customerRepository.findByName(search);
+    @Autowired
+    private CustomerRepository customerRepository;
+/*
+    public List<Customer> findAll() {
+        return this.customerRepository.f();
     }
 
-    public Customer findById(int id) {
-        return customerRepository.findById(id);
+    public void add(final Customer customer) {
+        this.customerRepository.add(customer);
     }
-    public Customer save(Customer customer) {
-        return customerRepository.save(customer);
-    }
+*/
 }

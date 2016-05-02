@@ -49,7 +49,7 @@ public class FakeTrainerDatabase {
         }
     }
 
-    public void setInitId(Trainer t){
+    private void setInitId(Trainer t){
         t.setId(++initId);
     }
 

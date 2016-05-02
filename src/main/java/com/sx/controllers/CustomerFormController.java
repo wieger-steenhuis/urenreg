@@ -1,7 +1,8 @@
 package com.sx.controllers;
 
 import com.sx.models.Customer;
-import com.sx.service.CustomerService;
+import com.sx.service.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CustomerFormController {
 
-    //instance of CustomerService to access utility methods (database access)
-    private CustomerService customerService = new CustomerService();
+    //instance of CustomerRepository to access utility methods (database access)
+    @Autowired
+    private CustomerRepository customerService;
 
     @RequestMapping(value="customer", method= RequestMethod.GET)
     public String customerSearch(@RequestParam(value = "id") int id, Model model) {
-        model.addAttribute("customer", customerService.findById(id));
+        model.addAttribute("customer", customerService.findOne(id));
         return "/customer_form";
     }
 

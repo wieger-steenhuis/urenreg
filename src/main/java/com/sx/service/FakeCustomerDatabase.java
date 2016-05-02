@@ -38,12 +38,12 @@ public class FakeCustomerDatabase {
             for (Customer c : customerDatabase) {
                 c.setFirstName("Customer");
                 c.setId(++initId);
-                c.seteMail(c.getFirstName() + c.getLastName() + "@gmail.com");
+                //c.seteMail(c.getFirstName() + c.getLastName() + "@gmail.com");
             }
         }
     }
 
-    public void setInitId(Customer c){
+    private void setInitId(Customer c){
         c.setId(++initId);
     }
 

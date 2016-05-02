@@ -13,6 +13,7 @@
         </h1>
     </div>
 </header>
+<!--/*@thymesVar id="customer" type="Customer"*/-->
 <form action="#" th:action="@{/save}" th:object="${customer}" method="post" class="formlayout">
     <input type="hidden" id="id" name="id"  th:field="${customer.id}"/>
     <label>voornaam: </label>
