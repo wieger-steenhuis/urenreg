@@ -4,6 +4,12 @@
 ul.textcenter{
     padding: 0;
 }
+a{
+    font-size: 15px;
+    font-weight: bold;
+    color: grey;
+    text-decoration: none;
+}
 button.buttonlayout{
     padding: 0 5px 0 5px;
     border-style: solid;

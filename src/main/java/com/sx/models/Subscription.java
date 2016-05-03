@@ -11,9 +11,9 @@ public class Subscription {
     //@Column(name="id") //don't need this, table name is equal to entity class...
     @GeneratedValue(strategy = GenerationType.AUTO) //Auto increment
     private int id;
-    @OneToOne
-    private Customer customer;
     private String startDate;
+    @ManyToOne
+    private Customer customer;
 
     public int getId() {
         return id;
@@ -37,5 +37,11 @@ public class Subscription {
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Abonnement "+this.getId() +
+                ", start datum'" + startDate;
     }
 }

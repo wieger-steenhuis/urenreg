@@ -1,5 +1,6 @@
 package com.sx.controllers;
 
+import com.sx.models.Customer;
 import com.sx.models.Subscription;
 import com.sx.service.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class SubscriptionFormController {
     @Autowired
     private SubscriptionRepository subscriptionService;
 
-    @RequestMapping(value="subscription", method= RequestMethod.GET)
+    @RequestMapping(value="/customer/subscriptions", method= RequestMethod.GET)
     public String subscriptionSearch(@RequestParam(value = "id") int id, Model model) {
         model.addAttribute("subscription", subscriptionService.findOne(id));
+        subscriptionService.findByCustomer(new Customer());
         return "/subscription_form";
     }
-
     @RequestMapping("/newsubscription")
     public String newSubscription(Model model){
         Subscription subscription = new Subscription();

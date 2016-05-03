@@ -19,7 +19,7 @@ public class Customer {
     private String phoneNr;
     private String eMail;
     private String pin;
-    /*@OneToMany
+    /*@OneToMany (targetEntity=Subscription.class )
     private List<Subscription> subscriptions;
 
     public List<Subscription> getSubscriptions() {
@@ -30,7 +30,6 @@ public class Customer {
         this.subscriptions = subscriptions;
     }
 */
-
     public int getId() {
         return id;
     }

@@ -33,5 +33,15 @@
     <br/><br/>
     <button class="buttonlayout" type="submit"><b>Opslaan</b></button>
 </form>
+<div class="textcenter">
+    <h4>Abbonementen:</h4>
+    <a style="font-size:18px; color:#ff0066" th:href="@{/newsubscription}" >Nieuw abonnenement</a><br/>
+    <!--/*@thymesVar id="subscriptions" type="ArrayList"*/-->
+    <ul class="textcenter">
+        <li th:each="item : ${subscription}">
+            <a th:href="@{/customer/subscriptions(id=${item.id})}" th:text="${item}">Item</a>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

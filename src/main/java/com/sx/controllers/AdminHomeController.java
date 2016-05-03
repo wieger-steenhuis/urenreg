@@ -26,7 +26,7 @@ public class AdminHomeController {
         //TASKS:
         TRAINER("Trainer toevoegen of wijzigen", "/edit_trainer"),
         CUSTOMER("Klant toevoegen of wijzigen", "/edit_customer"),
-        SUBSCRIPTION("Abonnement aanmaken of wijzigen", "/edit_subscription");
+        RAPPORTAGE("Rapportages maken", "/report");
 
         private String option;
         private String htmltarget;

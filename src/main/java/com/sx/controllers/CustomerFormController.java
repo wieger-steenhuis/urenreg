@@ -1,7 +1,9 @@
 package com.sx.controllers;
 
 import com.sx.models.Customer;
+import com.sx.models.Subscription;
 import com.sx.service.CustomerRepository;
+import com.sx.service.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,16 +18,22 @@ public class CustomerFormController {
     @Autowired
     private CustomerRepository customerService;
 
+    @Autowired
+    private SubscriptionRepository subscriptionService;
+
+
     @RequestMapping(value="customer", method= RequestMethod.GET)
     public String customerSearch(@RequestParam(value = "id") int id, Model model) {
-        model.addAttribute("customer", customerService.findOne(id));
+        Customer customer = customerService.findOne(id);
+        model.addAttribute("customer", customer);
+        model.addAttribute("subscription", subscriptionService.findByCustomer(customer));
         return "/customer_form";
     }
 
     @RequestMapping("/newcustomer")
     public String newCustomer(Model model){
-        Customer customer = new Customer();
-        model.addAttribute("customer", customer);
+        model.addAttribute("customer", new Customer());
+        model.addAttribute("subscription",new Subscription());
         return "/customer_form";
     }
 
