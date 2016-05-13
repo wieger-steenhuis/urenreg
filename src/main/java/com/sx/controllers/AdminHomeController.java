@@ -23,10 +23,10 @@ public class AdminHomeController {
     //each constant contains a discriptopn (to select in our views) and a specific html target to redirect to
     private enum Admin_Options {
 
-        //TASKS:
-        TRAINER("Trainer toevoegen of wijzigen", "/edit_trainer"),
+        //TASKS:CUSTOMER("Klant toevoegen of wijzigen", "/edit_customer"),
         CUSTOMER("Klant toevoegen of wijzigen", "/edit_customer"),
-        RAPPORTAGE("Rapportages maken", "/report");
+        TRAINER("Trainer toevoegen of wijzigen", "/edit_trainer"),
+        RAPPORTAGE("(Maand)rapportages maken", "/reporting");
 
         private String option;
         private String htmltarget;
@@ -85,7 +85,6 @@ public class AdminHomeController {
     //user input is identified in thymeleaf with name="optionsListId" and is bound (@ModelAttribute) to chosen-parameter
     //because the Admin_Options has a html target String, the chosen parameter takes care of redirecting to the right view
     public String choseAdminAction(@ModelAttribute("optionsListId") Admin_Options chosen) {
-        System.out.println(chosen);
         return chosen.getHtmltarget();
     }
 }

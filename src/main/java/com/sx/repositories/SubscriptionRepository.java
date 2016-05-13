@@ -1,4 +1,4 @@
-package com.sx.service;
+package com.sx.repositories;
 
 import com.sx.models.Customer;
 import com.sx.models.Subscription;

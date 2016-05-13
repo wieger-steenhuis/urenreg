@@ -1,6 +1,6 @@
 package com.sx.controllers;
 
-import com.sx.service.TrainerRepository;
+import com.sx.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +13,13 @@ public class EditTrainerController {
 
 
     //instance of TrainerRepository to access utility methods (database access)
+
     @Autowired
-    private TrainerRepository trainerService;
+    private TrainerService trainerService;
 
     @RequestMapping(value = "results", method = RequestMethod.GET)
     public String customerSearch(@ModelAttribute("trainerSearch") String search, Model model) {
-        model.addAttribute("searchresults", trainerService.findByFirstName(search));
+        model.addAttribute("searchresults", trainerService.searchNames(search, search));
         return "/edit_trainer";
     }
 }

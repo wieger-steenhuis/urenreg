@@ -36,6 +36,15 @@ form.formlayout{
     font-size: 20px;
     font-family: Calibri,serif;
 }
+.clickable_row{
+    background-color: transparent;
+    alignment: center;
+    border: none;
+    cursor: pointer;
+}
+.clickable_row:focus {
+    outline: none;
+}
 body{
     font-family: Calibri,serif;
     font-size: 20px;

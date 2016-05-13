@@ -14,7 +14,7 @@
     </div>
 </header>
 <!--/*@thymesVar id="customer" type="Customer"*/-->
-<form action="#" th:action="@{/save}" th:object="${customer}" method="post" class="formlayout">
+<form action="#" th:action="@{/save}" th:object="${customer}" id="custform" method="post" class="formlayout">
     <input type="hidden" id="id" name="id"  th:field="${customer.id}"/>
     <label>voornaam: </label>
     <input type="text" placeholder="voornaam" id="firstName" name="firstName" th:field="${customer.firstName}"/>
@@ -33,15 +33,23 @@
     <br/><br/>
     <button class="buttonlayout" type="submit"><b>Opslaan</b></button>
 </form>
-<div class="textcenter">
-    <h4>Abbonementen:</h4>
-    <a style="font-size:18px; color:#ff0066" th:href="@{/newsubscription}" >Nieuw abonnenement</a><br/>
-    <!--/*@thymesVar id="subscriptions" type="ArrayList"*/-->
-    <ul class="textcenter">
-        <li th:each="item : ${subscription}">
-            <a th:href="@{/customer/subscriptions(id=${item.id})}" th:text="${item}">Item</a>
-        </li>
-    </ul>
-</div>
+    <h4 class="textcenter">Abonnementen:</h4>
+    <table align="center">
+        <tbody>
+        <tr th:each="item : ${subscriptions}">
+            <td>
+                <form th:action="@{/subscription}" th:object="${subscription}" method="post">
+                    <input type="hidden" name="subscription" th:value="${item.id}"/>
+                    <input type="submit" class="clickable_row" th:value="${item}"/>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <input type="submit" class="clickable_row" style="color: #ff0066; font-weight: bold" form="custform" formaction="newsubscription" value="Nieuw Abonnement"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>

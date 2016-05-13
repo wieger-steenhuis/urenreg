@@ -1,6 +1,6 @@
 package com.sx.controllers;
 
-import com.sx.service.CustomerRepository;
+import com.sx.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +13,11 @@ public class EditCustomerController {
 
     //instance of CustomerService to access utility methods (database access)
     @Autowired
-    private CustomerRepository customerService;
+    private CustomerService customerService;
 
     @RequestMapping(value="result", method= RequestMethod.GET)
     public String customerSearch(@ModelAttribute("customerSearch") String search, Model model) {
-        model.addAttribute("searchresults", customerService.findByFirstName(search));
+        model.addAttribute("searchresults", customerService.searchNames(search, search));
         return "/edit_customer";
     }
 }

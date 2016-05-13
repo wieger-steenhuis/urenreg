@@ -1,41 +1,90 @@
 package com.sx.controllers;
 
 import com.sx.models.Customer;
+import com.sx.models.SubscrType;
 import com.sx.models.Subscription;
-import com.sx.service.SubscriptionRepository;
+import com.sx.models.Trainer;
+import com.sx.service.CustomerService;
+import com.sx.service.SessionService;
+import com.sx.service.SubscriptionService;
+import com.sx.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
+import java.util.List;
 
 
 @Controller
 public class SubscriptionFormController {
 
-    //instance of CustomerRepository to access utility methods (database access)
+    //'instances' of repository interfaces to access CRUD functionality (database access)
     @Autowired
-    private SubscriptionRepository subscriptionService;
+    private SubscriptionService subscriptionService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private TrainerService trainerService;
+    @Autowired
+    private SessionService sessionService;
 
-    @RequestMapping(value="/customer/subscriptions", method= RequestMethod.GET)
-    public String subscriptionSearch(@RequestParam(value = "id") int id, Model model) {
-        model.addAttribute("subscription", subscriptionService.findOne(id));
-        subscriptionService.findByCustomer(new Customer());
-        return "/subscription_form";
+    @ModelAttribute("trainers")
+    public List<Trainer> populateTrainers() {
+        return (List<Trainer>)trainerService.findAll();
     }
-    @RequestMapping("/newsubscription")
-    public String newSubscription(Model model){
-        Subscription subscription = new Subscription();
+
+    @ModelAttribute("types")
+    public List<SubscrType> populateTypes(){
+        return Arrays.asList(SubscrType.values());
+    }
+
+
+    @RequestMapping(value="/subscription", method= RequestMethod.POST)
+    public String subscriptionSearch(@RequestParam (value = "subscription") Subscription subscription, Model model) {
         model.addAttribute("subscription", subscription);
         return "/subscription_form";
     }
 
-    @RequestMapping("/save_subscription")
-    public String save(Subscription subscription){
-        subscriptionService.save(subscription);
-        return "redirect:/adminhome";//without redirect: admin_honme will be loaded without the model variables...
+
+    @RequestMapping(value="/newsubscription", method=RequestMethod.POST)
+    public String newSubscription(@RequestParam String firstName, String lastName, String phoneNr, String eMail, String pin, int id, Model model) {
+        Customer customer;
+        if (id==0){
+            customer = new Customer();
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setPhoneNr(phoneNr);
+            customer.seteMail(eMail);
+            customer.setPin(pin);
+            customerService.save(customer);
+        }
+        else{
+            customer = customerService.findOne(id);
+        }
+        Subscription subscription = new Subscription(SubscrType.TWENTYFOUR);
+        System.out.println(subscription.getSubscrType());
+        subscription.setCustomer(customer);
+        model.addAttribute("subscription", subscription);
+        return "/subscription_form";
+    }
+
+    @RequestMapping(value = "/save_subscription", method=RequestMethod.POST)
+    public String saveSubscription(Subscription subscription, Model model){
+        System.out.println(subscription.getSubscrType());
+        if (subscription.getId()==0){
+            subscription = subscriptionService.save(subscription); //reassign subscr. with id...
+            sessionService.initSessions(subscription); //because this subscr. must have ID to persist all sessions
+        }
+        else {
+            subscriptionService.save(subscription);
+        }
+        model.addAttribute("customer", customerService.findOne(subscription.getCustomer().getId()));
+        model.addAttribute("subscriptions", subscriptionService.findByCustomer(subscription.getCustomer()));
+        return "/customer_form";
     }
 }
-

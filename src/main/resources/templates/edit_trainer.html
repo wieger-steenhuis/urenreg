@@ -19,8 +19,17 @@
     <input type="search" name="trainerSearch" id="trainerSearchId"/>
     <button class="buttonlayout" type="submit">Zoek</button>
 </form>
-<ul class="textcenter">
-    <li th:each="item : ${searchresults}"><a th:href="@{/trainer(id=${item.id})}" th:text="${item}">Item</a></li>
-</ul>
+<table align="center">
+    <tbody>
+    <tr th:each="item : ${searchresults}">
+        <td>
+            <form th:action="@{/trainer}" th:object="${trainer}" method="post">
+                <input type="hidden" name="trainer" th:value="${item.id}"/>
+                <input type="submit" class="clickable_row" th:value="${item}"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

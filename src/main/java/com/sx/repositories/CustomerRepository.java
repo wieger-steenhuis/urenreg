@@ -1,8 +1,10 @@
-package com.sx.service;
+package com.sx.repositories;
 
 import com.sx.models.Customer;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
-    public Customer findByFirstName(String firstName);
+    public List<Customer> findByFirstNameOrLastNameContainingOrderByFirstNameAsc(String firstName, String lastName);
 }

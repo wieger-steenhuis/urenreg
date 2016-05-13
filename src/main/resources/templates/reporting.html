@@ -13,14 +13,6 @@
         </h1>
     </div>
 </header>
-<p class="textcenter">Kies 'Nieuw Abonnement' of zoek naar bestaande abonnementen</p>
-<form class="formlayout" th:action="@{/resultset}" method="get">
-    <button class="buttonlayout" type="button" onclick="location.href='/newsubscription'">Nieuw Abonnement</button><br/><br/>
-    <input type="date" name="subscriptionSearch" id="subscriptionSearchId"/>
-    <button class="buttonlayout" type="submit">Zoek</button>
-</form>
-<ul class="textcenter">
-    <li th:each="item : ${searchresults}"><a th:href="@{/customer(id=${item.id})}" th:text="${item}">Item</a></li>
-</ul>
+<p class="textcenter">REPORTS</p>
 </body>
 </html>

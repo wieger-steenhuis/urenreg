@@ -12,8 +12,24 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.AUTO) //Auto increment
     private int id;
     private String startDate;
+    @Enumerated(EnumType.STRING)
+    private SubscrType subscrType;
+
     @ManyToOne
+    //@JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @ManyToOne
+    private Trainer trainer;
+
+    private Subscription(){
+        super();
+    }
+
+    public Subscription(SubscrType subscrType){
+        super();
+        this.subscrType = subscrType;
+    }
 
     public int getId() {
         return id;
@@ -21,14 +37,6 @@ public class Subscription {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     public String getStartDate() {
@@ -39,9 +47,33 @@ public class Subscription {
         this.startDate = startDate;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
+    public SubscrType getSubscrType() {
+        return subscrType;
+    }
+
+    public void setSubscrType(SubscrType subscrType) {
+        this.subscrType = subscrType;
+    }
+
     @Override
     public String toString() {
         return "Abonnement "+this.getId() +
-                ", start datum'" + startDate;
+                ", start datum" + startDate;
     }
 }
