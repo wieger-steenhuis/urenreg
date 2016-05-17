@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 17 mei 2016 om 10:29
+-- Gegenereerd op: 17 mei 2016 om 14:11
 -- Serverversie: 5.6.17
 -- PHP-versie: 5.5.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Databank: `demo`
 --
+CREATE DATABASE IF NOT EXISTS `demo` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `demo`;
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `session` (
   `date` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `subscription_id` (`subscription_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=85 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `session`
@@ -171,7 +173,19 @@ INSERT INTO `session` (`id`, `subscription_id`, `date`) VALUES
 (69, 44, NULL),
 (70, 44, NULL),
 (71, 44, NULL),
-(72, 44, NULL);
+(72, 44, NULL),
+(73, 45, NULL),
+(74, 45, NULL),
+(75, 45, NULL),
+(76, 45, NULL),
+(77, 45, NULL),
+(78, 45, NULL),
+(79, 45, NULL),
+(80, 45, NULL),
+(81, 45, NULL),
+(82, 45, NULL),
+(83, 45, NULL),
+(84, 45, NULL);
 
 -- --------------------------------------------------------
 
@@ -188,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `subscription` (
   PRIMARY KEY (`id`),
   KEY `cust_id` (`customer_id`),
   KEY `trainer_id` (`trainer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `subscription`
@@ -215,7 +229,8 @@ INSERT INTO `subscription` (`id`, `customer_id`, `trainer_id`, `subscr_type`, `s
 (41, 15, 2, 'TWENTYFOUR', '2016-05-12'),
 (42, 11, 1, 'TWENTYFOUR', '2016-05-12'),
 (43, 11, 1, 'TWENTYFOUR', '2016-05-05'),
-(44, 17, 6, 'TWENTYFOUR', '2016-05-11');
+(44, 17, 6, 'TWENTYFOUR', '2016-05-11'),
+(45, 15, 1, 'TWELVE', '2016-05-17');
 
 -- --------------------------------------------------------
 
