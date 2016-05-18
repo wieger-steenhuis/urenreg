@@ -15,6 +15,7 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     public List<Customer> searchNames(String firstName, String lastName){
+        //with Spring jpa data you can create methods by convention
         return this.customerRepository.findByFirstNameOrLastNameContainingOrderByFirstNameAsc(firstName, lastName);
     }
 

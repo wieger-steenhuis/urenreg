@@ -14,6 +14,9 @@ public class SubscriptionService {
     @Autowired
     private SubscriptionRepository subscriptionRepository;
 
+    @Autowired
+    private SessionService sessionService;
+
     public Subscription findByStartDate(String startDate){
         return this.subscriptionRepository.findByStartDate(startDate);
     }
@@ -22,9 +25,14 @@ public class SubscriptionService {
         return this.subscriptionRepository.findByCustomer(customer);
     }
 
-    public Subscription save(Subscription subscription){
-        return this.subscriptionRepository.save(subscription);
+    public Subscription save(Subscription subscription) {
+        //whenever a new subscription is saved initSessions creates session objects (depending on subscrType)
+        if (subscription.getId() == 0) {
+            subscription = this.subscriptionRepository.save(subscription); //reassign subscr. after save to obtain id from SQL table...
+            sessionService.initSessions(subscription); //because this subscr. must have id to persist related sessions
+            return subscription;
+        } else {
+            return this.subscriptionRepository.save(subscription);
+        }
     }
-
-
 }

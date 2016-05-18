@@ -76,13 +76,7 @@ public class SubscriptionFormController {
     @RequestMapping(value = "/save_subscription", method=RequestMethod.POST)
     public String saveSubscription(Subscription subscription, Model model){
         System.out.println(subscription.getSubscrType());
-        if (subscription.getId()==0){
-            subscription = subscriptionService.save(subscription); //reassign subscr. with id...
-            sessionService.initSessions(subscription); //because this subscr. must have ID to persist all sessions
-        }
-        else {
-            subscriptionService.save(subscription);
-        }
+        subscription = subscriptionService.save(subscription);
         model.addAttribute("customer", customerService.findOne(subscription.getCustomer().getId()));
         model.addAttribute("subscriptions", subscriptionService.findByCustomer(subscription.getCustomer()));
         return "/customer_form";

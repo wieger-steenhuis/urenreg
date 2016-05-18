@@ -13,9 +13,10 @@ public class SessionService {
     private SessionRepository sessionRepository;
 
     public void initSessions(Subscription subscription){
+        //create sessions depending on SubscrType
         for (int i = 0; i < subscription.getSubscrType().getSessions(); i++) {
             Session session = new Session();
-            session.setSubscription(subscription);
+            session.setSubscription(subscription);//to enable manyToOne relation
             this.sessionRepository.save(session);
         }
     }
