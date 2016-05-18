@@ -5,7 +5,6 @@ import com.sx.models.SubscrType;
 import com.sx.models.Subscription;
 import com.sx.models.Trainer;
 import com.sx.service.CustomerService;
-import com.sx.service.SessionService;
 import com.sx.service.SubscriptionService;
 import com.sx.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,28 +29,33 @@ public class SubscriptionFormController {
     private CustomerService customerService;
     @Autowired
     private TrainerService trainerService;
-    @Autowired
-    private SessionService sessionService;
 
+    //to add data to the model for this view outside of it's methods use @ModelAttribute
+
+    //a complete list of all trainers is added in order to select a trainer with a subscription
     @ModelAttribute("trainers")
     public List<Trainer> populateTrainers() {
         return (List<Trainer>)trainerService.findAll();
     }
 
+    //a list of subscriptionTypes is added in order to select a subscription type (new subscriptions only)
     @ModelAttribute("types")
     public List<SubscrType> populateTypes(){
         return Arrays.asList(SubscrType.values());
     }
 
-
+    //when an existing subscription is clicked from previous template customer_form this subscription is inserted in the form
     @RequestMapping(value="/subscription", method= RequestMethod.POST)
     public String subscriptionSearch(@RequestParam (value = "subscription") Subscription subscription, Model model) {
         model.addAttribute("subscription", subscription);
         return "/subscription_form";
     }
 
-
+    //when new subscription button is clicked from previous template customer_form a new subscription is inserted in the form
+    //if customer_form contains a new customer, this customer is saved first to obtain a customer id from
+    //the database so the subscription can relate to this customer
     @RequestMapping(value="/newsubscription", method=RequestMethod.POST)
+    //TODO refactor method using parameter Customer in stead of all the values of Customer's fields
     public String newSubscription(@RequestParam String firstName, String lastName, String phoneNr, String eMail, String pin, int id, Model model) {
         Customer customer;
         if (id==0){
@@ -73,6 +77,8 @@ public class SubscriptionFormController {
         return "/subscription_form";
     }
 
+    //save button persists Subscription Entity in the database using subscriptionService method and
+    // redirects to customer_form with subscription.customer data
     @RequestMapping(value = "/save_subscription", method=RequestMethod.POST)
     public String saveSubscription(Subscription subscription, Model model){
         System.out.println(subscription.getSubscrType());

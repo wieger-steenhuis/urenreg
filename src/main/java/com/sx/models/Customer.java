@@ -19,17 +19,7 @@ public class Customer {
     private String phoneNr;
     private String eMail;
     private String pin;
-    /*@OneToMany (targetEntity=Subscription.class )
-    private List<Subscription> subscriptions;
 
-    public List<Subscription> getSubscriptions() {
-        return subscriptions;
-    }
-
-    public void setSubscriptions(List<Subscription> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
-*/
     public int getId() {
         return id;
     }

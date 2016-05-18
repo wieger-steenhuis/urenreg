@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
+    //controller classes map server requests and return html templates (String value)
+    //when the adress '/' (localhost:8080) is requested this controller returns index.html
     @RequestMapping("/")
     public String index(){
         return "index";

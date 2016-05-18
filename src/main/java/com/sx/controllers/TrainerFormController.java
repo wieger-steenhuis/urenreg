@@ -12,18 +12,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TrainerFormController {
-
+    //trainer_form template to edit or create Trainer Entity
 
     //instance of TrainerRepository to access utility methods (database access)
     @Autowired
     private TrainerService trainerService;
 
+    //when a trainer is found and clicked from previous template edit_trainer this trainer is inserted in the form
     @RequestMapping(value="trainer", method= RequestMethod.POST)
-    public String customerSearch(@RequestParam (value = "trainer") Trainer trainer, Model model) {
+    public String trainerSearch(@RequestParam(value = "trainer") Trainer trainer, Model model) {
         model.addAttribute("trainer", trainer);
         return "/trainer_form";
     }
 
+    //when new trainer button is clicked from previous template edit_trainer a new customer is inserted in the form
     @RequestMapping("/newtrainer")
     public String newTrainer(Model model){
         Trainer trainer = new Trainer();
@@ -31,9 +33,10 @@ public class TrainerFormController {
         return "/trainer_form";
     }
 
+    //save button persists Trainer Entity in the database using trainerService method and redirects to login (amin_home)
     @RequestMapping("/saved")
     public String save(Trainer trainer){
         trainerService.save(trainer);
-        return "redirect:/adminhome";//without redirect: admin_honme will be loaded without the model variables...
+        return "redirect:/login";//without redirect: admin_honme will be loaded without the model variables...
     }
 }
