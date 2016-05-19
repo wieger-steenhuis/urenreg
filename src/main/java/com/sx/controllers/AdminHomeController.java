@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Arrays;
 import java.util.List;
 
+//controller class related to admin_home.html. This view multiple admin tasks and redirects to
 @Controller
 public class AdminHomeController {
 
@@ -53,14 +54,15 @@ public class AdminHomeController {
     }
 
     //Enum Admin_Options contains different admin tasks to chose from
-    //each constant contains a discriptopn (to select in our views) and a specific html target to redirect to
+    //each constant contains a discription (to select in our views) and a specific html target to redirect to
     private enum Admin_Options {
 
-        //TASKS:CUSTOMER("Klant toevoegen of wijzigen", "/edit_customer"),
+        //admin tasks:
         CUSTOMER("Klant toevoegen of wijzigen", "/edit_customer"),
         TRAINER("Trainer toevoegen of wijzigen", "/edit_trainer"),
         RAPPORTAGE("(Maand)rapportages maken", "/reporting");
 
+        //enum variables:
         private String option;
         private String htmltarget;
 
@@ -70,7 +72,7 @@ public class AdminHomeController {
             this.htmltarget = htmltarget;
         }
 
-        //getters & setters
+        //getters & setters for enum variables:
         public String getOption() {
             return option;
         }

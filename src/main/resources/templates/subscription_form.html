@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="en-US">
     <title>SX urenregistratie(web 1.0)</title>
     <link href="../static/Stylesheet.css" th:href="@{../Stylesheet.css}" rel="stylesheet" media="screen" />
     <meta charset="UTF-8" />
@@ -29,9 +29,10 @@
     <br/>
     <label>abonnementstype: </label>
     <select style="display: inline-block;" th:if="${subscription.id == 0}" title="select" class="kader_layout" id="type" name="subscrType">
-        <option th:each="item : ${types}" th:value="${item}" th:text="${item.discription}"/>
+        <option th:each="item : ${types}" th:value="${item}" th:text="${item.description}"/>
     </select>
-    <label style="display: inline-block;" th:if="${subscription.id != 0}" th:text="${subscription.subscrType.discription}">abonnementstype</label>
+    <label style="display: inline-block;" th:if="${subscription.id != 0}"
+           th:text="${subscription.subscrType.description}">abonnementstype</label>
 
     <br/>
     <label>startdatum: </label>

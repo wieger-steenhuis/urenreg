@@ -3,12 +3,12 @@ package com.sx.models;
 public enum SubscrType {TWELVE(12, "12 Sessies (12 weken)"), TWENTYFOUR(24, "24 Sessies (12 weken)");
 
     private int sessions;
-    private String discription;
+    private String description;
 
 
-    private SubscrType(int sessions, String discription){
+    private SubscrType(int sessions, String description) {
         this.sessions = sessions;
-        this.discription = discription;
+        this.description = description;
     }
 
     public int getSessions() {
@@ -19,11 +19,11 @@ public enum SubscrType {TWELVE(12, "12 Sessies (12 weken)"), TWENTYFOUR(24, "24 
         this.sessions = sessions;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -55,7 +55,7 @@ public class SubscriptionFormController {
     //if customer_form contains a new customer, this customer is saved first to obtain a customer id from
     //the database so the subscription can relate to this customer
     @RequestMapping(value="/newsubscription", method=RequestMethod.POST)
-    //TODO refactor method using parameter Customer in stead of all the values of Customer's fields
+    //TODO refactor method using parameter Customer in stead of all values of Customer's fields
     public String newSubscription(@RequestParam String firstName, String lastName, String phoneNr, String eMail, String pin, int id, Model model) {
         Customer customer;
         if (id==0){
@@ -71,7 +71,6 @@ public class SubscriptionFormController {
             customer = customerService.findOne(id);
         }
         Subscription subscription = new Subscription(SubscrType.TWENTYFOUR);
-        System.out.println(subscription.getSubscrType());
         subscription.setCustomer(customer);
         model.addAttribute("subscription", subscription);
         return "/subscription_form";
@@ -81,7 +80,6 @@ public class SubscriptionFormController {
     // redirects to customer_form with subscription.customer data
     @RequestMapping(value = "/save_subscription", method=RequestMethod.POST)
     public String saveSubscription(Subscription subscription, Model model){
-        System.out.println(subscription.getSubscrType());
         subscription = subscriptionService.save(subscription);
         model.addAttribute("customer", customerService.findOne(subscription.getCustomer().getId()));
         model.addAttribute("subscriptions", subscriptionService.findByCustomer(subscription.getCustomer()));

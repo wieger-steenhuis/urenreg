@@ -19,7 +19,7 @@ public class EditCustomerController {
     private CustomerService customerService;
 
     //the search form sends String data to 'result' with an identifier named 'customerSearch'
-    //'customerSearch' is the parameter for searching the customer database with 'customerService' methods
+    //'customerSearch' is the parameter for searching the customer database with 'customerService' method
     //'searchresults' is a list of customers that match the searchcriteria and is addded to this view
     @RequestMapping(value="result", method= RequestMethod.GET)
     public String customerSearch(@ModelAttribute("customerSearch") String search, Model model) {

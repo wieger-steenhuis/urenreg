@@ -14,7 +14,7 @@ public class TrainerService {
     private TrainerRepository trainerRepository;
 
     public List<Trainer> searchNames(String firstName, String lastName){
-        return this.trainerRepository.findByFirstNameOrLastNameContainingOrderByFirstNameAsc(firstName, lastName);
+        return this.trainerRepository.findByFirstNameContainingOrLastNameContainingOrderByFirstNameAsc(firstName, lastName);
     }
 
     public Trainer save(Trainer trainer){
