@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CustomerFormController {
@@ -25,7 +24,7 @@ public class CustomerFormController {
     //when a customer is found and clicked from previous template edit_customer this customer is inserted in the form
     //and its subscriptions (if any) will load using subscriptionService method
     @RequestMapping(value="customer", method= RequestMethod.POST)
-    public String editCustomer(@RequestParam(value = "customer") Customer customer, Model model) {
+    public String editCustomer(Customer customer, Model model) {
         model.addAttribute("customer", customer);
         model.addAttribute("subscriptions", subscriptionService.findByCustomer(customer));
         return "/customer_form";

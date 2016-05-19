@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -20,7 +19,7 @@ public class TrainerFormController {
 
     //when a trainer is found and clicked from previous template edit_trainer this trainer is inserted in the form
     @RequestMapping(value="trainer", method= RequestMethod.POST)
-    public String trainerSearch(@RequestParam(value = "trainer") Trainer trainer, Model model) {
+    public String trainerSearch(Trainer trainer, Model model) {
         model.addAttribute("trainer", trainer);
         return "/trainer_form";
     }
@@ -33,7 +32,7 @@ public class TrainerFormController {
         return "/trainer_form";
     }
 
-    //save button persists Trainer Entity in the database using trainerService method and redirects to login (amin_home)
+    //save button persists Trainer Entity in the database using trainerService method and redirects to login (admin_home)
     @RequestMapping("/saved")
     public String save(Trainer trainer){
         trainerService.save(trainer);
