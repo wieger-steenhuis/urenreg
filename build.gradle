@@ -25,8 +25,12 @@ repositories {
 	mavenCentral()
 }
 
+development {
+	dataSource {
+		dbCreate = "create-drop"
+	}}
 
-dependencies {
+		dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
